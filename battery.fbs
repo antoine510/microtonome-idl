@@ -1,0 +1,15 @@
+namespace api;
+
+enum BatteryState : uint8 {
+  OK = 0, Overcurrent, Overtemperature, Overvoltage, Undertemperature, Undervoltage
+}
+
+// Topic: Battery/{batteryName}
+table Battery {
+  state_of_charge:uint8;  // [%]
+  voltage:uint16;         // 1e-2[V]
+  current:int16;          // 1e-2[A]
+  cell_voltages:[uint16]; // 1e-3[V]
+  temperature:int8;       // [degC]
+  state:BatteryState = OK;
+}
